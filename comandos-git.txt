@@ -1,0 +1,119 @@
+
+Configurações iniciais
+
+
+git version
+para ver se o git esta instalado
+
+git init
+para inicializar o git, de o comando na pasta desejada
+
+git config --local user.name "Seu nome aqui"
+git config --local user.email "Seu email aqui"
+Para adicionar um dono da REPOSITORIO localmente, e depois tbm adicionei um email
+
+git config user.name
+git config user.email
+Para verificar quem é o dono da REPOSITORIO e qual email está configurado para ela
+
+git status
+mostra se teve alguma alteracao para ser salva
+
+git add "arquivo"
+se o arquivo é novo, ele deve ser adicionado a lista dos arquivos para serem salvos
+
+git add .
+caso queira adicionar todos arquivos da pasta para serem salvos pelo git
+
+git commit -m "criado arquivo index.html com lista de cursos"
+Salva os arquivos que foram carregados para salvar, e comenta com um breve resumo
+
+git rm "arquivo"
+para o git parar de monitorar o arquivo especifico
+
+git log -p
+mostra as alterações do "commit" detalhadamente
+contendo o hash da alteração e a REPOSITORIO
+
+###############################################################
+
+Ignore
+Para ignorar arquivos especificos que estejam dentro da REPOSITORIO
+
+Crie um arquivo chamado ".gitignore"
+echo > .gitignore
+dentro dele coloque o nome das coisas que devem ser ignoradas pelo git, cada coisa em uma linha
+
+adicioner o ".gitignore" no git e commit ele
+git add .gitignore
+git commit -m "adicionando .gitignore"
+
+###############################################################
+
+criando um repositorio remoto-local
+
+1º vamos criar uma pasta para servir de servidor
+pwd
+/home/marlon/Documentos/git/marlon
+cd ..
+
+pwd
+/home/marlon/Documentos/git/servidor/
+mkdir servidor
+
+cd
+/home/marlon/Documentos/git/servidor/
+git init --bare
+este comando inicia o git na pasta servidor com o parametro "--bare" que indica que este repositorio é só para armazenar alterações e não vai conter os arquivos de edicao, isso permite que adicionarmos este repositorio como remoto em outro repositório.
+
+
+###############################################################
+1 repositorio remoto
+Adicionando a branch um repositorio remoto
+
+git remote -v
+se este comando for dado dentro da branch desejada, vai listar os repositorios remotos que ela conhece
+comandos:
+cd /home/marlon/Documentos/git/marlon/
+git remote -v
+
+
+git remote add srv-local /home/marlon/Documentos/git/servidor/
+para adicionar ao conhecimento desta branch um repositorio remoto
+(git remote add= comando), (srv-local= nome que escolhi) e (/home/marlon/Documentos/git/servidor/= caminho do repositorio)
+comandos:
+cd /home/marlon/Documentos/git/marlon/
+git remote add srv-local /home/marlon/Documentos/git/servidor/
+
+git push srv-local master
+"comando enviar" "apelido serv remoto" "nome da nova branch que será no srv remoto"
+Comando para enviar de "marlon -> servidor= srv-local"
+
+###############################################################
+2 repositorio remoto
+marlon -> servidor -> ana
+
+Aqui a ana vai clonar os dados do repositório servidor p ana
+git clone /home/marlon/Documentos/git/servidor/ clone_srv-local
+comando    caminho                              nome da pasta para os arq clonados
+
+cd /home/marlon/Documentos/git/ana/clone_srv-local/
+git remote -v
+resultado= origin	/home/marlon/Documentos/git/servidor/ (fetch)
+para trocar de "origin p/ o apelido padrao srv-local", segue comando:
+git remote rename origin srv-local
+
+git pull srv-local master
+
+###############################################################
+
+Assistindo a aula:
+https://cursos.alura.com.br/course/git-github-controle-de-versao/task/57014
+
+5 mn
+#########
+
+
+
+
+
